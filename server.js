@@ -13,8 +13,14 @@ app.use(cors());
 app.use('/public', express.static(process.cwd() + '/public'));
 
 
-app.post('/profile', upload.single('avatar'), function (req, res, next) {
+app.post('api/fileanalyse', upload.single('inputFile'), function (req, res) {
   
+  const { originalname: name, mimetype: type, size } = req.file;
+  res.send({
+    name,
+    type,
+    size
+  })
 })
 
 
